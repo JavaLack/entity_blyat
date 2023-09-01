@@ -25,8 +25,4 @@ public class DAOIMPL implements DAO {
         return cars.stream().limit(count).toList();
     }
 
-//    @Override
-//    public List<Car> getOllCars() {
-//        return cars;
-//    }
 }
