@@ -8,5 +8,4 @@ import java.util.List;
 public interface Dao {
     List<Car> getCars(int count);
 
-//    List<Car> getOllCars();
 }
