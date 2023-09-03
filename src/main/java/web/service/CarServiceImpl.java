@@ -1,7 +1,7 @@
 package web.service;
 
-import web.DAO.DAO;
-import web.Model.Car;
+import web.dao.Dao;
+import web.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +10,12 @@ import java.util.List;
 @Component
 public class CarServiceImpl implements CarService{
 
+    final Dao dao;
     @Autowired
-    DAO dao;
+    public CarServiceImpl(Dao dao) {
+        this.dao = dao;
+    }
+
     @Override
     public List<Car> getCars(int count) {
         if (count >= 5) {
