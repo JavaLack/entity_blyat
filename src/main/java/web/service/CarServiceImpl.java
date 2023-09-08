@@ -1,13 +1,13 @@
 package web.service;
 
+import org.springframework.stereotype.Service;
 import web.dao.Dao;
-import web.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import web.model.User;
 
 import java.util.List;
 
-@Component
+@Service
 public class CarServiceImpl implements CarService{
 
     final Dao dao;
@@ -17,13 +17,28 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
-    public List<Car> getCars(int count) {
-        if (count >= 5) {
-            count = 5;
-        } else if (count < 0) {
-            count = 0;
-        }
+    public List<User> getUsers() {
 
-        return dao.getCars(count);
+        return dao.getUsers();
+    }
+
+    @Override
+    public User showId(int id) {
+        return dao.showId(id);
+    }
+
+    @Override
+    public void save(User user) {
+        dao.save(user);
+    }
+
+    @Override
+    public void delete(int id) {
+        dao.delete(id);
+    }
+
+    @Override
+    public void update(int id, User user) {
+        dao.update(id, user);
     }
 }

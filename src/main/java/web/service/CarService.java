@@ -1,11 +1,15 @@
 package web.service;
 
-import web.model.Car;
+import web.model.User;
 
 import java.util.List;
 
 
 public interface CarService {
-    List<Car> getCars(int count);
+    List<User> getUsers();
+    User showId(int id);
+    void save(User user);
+    void update(int id, User user);
+    void delete(int id);
 
 }

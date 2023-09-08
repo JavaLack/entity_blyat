@@ -1,28 +1,53 @@
 package web.dao;
 
-import web.model.Car;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import web.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class DaoImpl implements Dao {
 
-    private List<Car> cars = new ArrayList<>();
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    {
-        cars.add(new Car(1, "BMW", 12000));
-        cars.add(new Car(7, "BMW", 35000));
-        cars.add(new Car(3, "BMW M power", 50000));
-        cars.add(new Car(222, "Mercedes", 55000));
-        cars.add(new Car(124, "Mercedes", 8000));
-    }
-
+    @Transactional(readOnly = true )
     @Override
-    public List<Car> getCars(int count) {
-
-        return cars.stream().limit(count).toList();
+    public List<User> getUsers() {
+        List<User> users = entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+        return users;
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public User showId(int id) {
+        return entityManager.find(User.class, id);
+    }
+
+    @Transactional
+    @Override
+    public void save(User user) {
+        entityManager.persist(user);
+        entityManager.flush();
+    }
+
+    @Transactional
+    @Override
+    public void update(int id, User user) {
+        User updateUser = entityManager.find(User.class, id);
+
+        updateUser.setName(user.getName());
+        updateUser.setLastName(user.getLastName());
+        entityManager.flush();
+    }
+
+    @Transactional
+    @Override
+    public void delete(int id) {
+        entityManager.remove(entityManager.find(User.class, id));
+        entityManager.flush();
+    }
 }
