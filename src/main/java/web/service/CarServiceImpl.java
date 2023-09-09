@@ -8,7 +8,7 @@ import web.model.User;
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements CarService{
+public class UserServiceImpl implements UserService{
 
     final Dao dao;
     @Autowired
