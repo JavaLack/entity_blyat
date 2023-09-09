@@ -5,7 +5,7 @@ import web.model.User;
 import java.util.List;
 
 
-public interface CarService {
+public interface UserService {
     List<User> getUsers();
     User showId(int id);
     void save(User user);
