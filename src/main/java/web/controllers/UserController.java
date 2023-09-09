@@ -6,15 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
-import web.service.CarService;
+import web.service.UserService;
 
 @Controller
 @RequestMapping("/")
 public class UserController {
 
-    final CarService service;
+    final UserService service;
     @Autowired
-    public UserController(CarService service) {
+    public UserController(UserService service) {
         this.service = service;
     }
 
